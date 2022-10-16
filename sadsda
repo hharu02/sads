@@ -1,34 +1,4 @@
---1
-function msg(text,duration)
-    local hint = Instance.new("Hint",game.CoreGui)
-    hint.Text = text
-    wait(duration or 5)
-    hint:Destroy()
-end
-function UpdateScript()
-    local bind = Instance.new("BindableFunction")
-    function bind.OnInvoke(response)
-        if response == "Yes" then
-            if not setclipboard then
-                msg("https://pastebin.com/raw/eGiC2jPg")
-            end
-            setclipboard("https://pastebin.com/raw/eGiC2jPg")
-            game.StarterGui:SetCore("SendNotification",{
-                Title = "Custom Crosshair",
-                Text = "Copied the script to your clipboard!",
-                Duration = 5
-            })
-        end
-    end
-    game.StarterGui:SetCore("SendNotification",{
-        Title = "Custom Crosshair",
-        Text = "You are using an older version of Custom Crosshair. Would you like the latest version?",
-        Duration = 20,
-        Callback = bind,
-        Button1 = "Yes",
-        Button2 = "No"
-    })
-end
+
 local player = game:GetService("Players").LocalPlayer
 local camera = workspace.CurrentCamera
 local UIS = game:GetService("UserInputService")
@@ -57,17 +27,6 @@ if typeof(getgenv().crosshairobj) == "table" then
 end
 if typeof(getgenv().crosshairrs) == "RBXScriptConnection" then
     getgenv().crosshairrs:Disconnect()
-end
-local supported = false
-for i,v in next, {286090429,301549746,4292776423,292439477,299659045,4716045691,3233893879,2377868063,2555870920,4651779470,606849621,2916899287,443406476,1224212277,3527629287,388599755} do
-    if game.PlaceId == v then
-        supported = true
-    end
-end
-if ss.HideGameCrosshair and not supported then
-    spawn(function()
-        msg("HideGameCrosshair is not available for this game. Check the source for a list of supported games",5) 
-    end)
 end
 
 local line1 = Drawing.new("Line") -- Top Line
